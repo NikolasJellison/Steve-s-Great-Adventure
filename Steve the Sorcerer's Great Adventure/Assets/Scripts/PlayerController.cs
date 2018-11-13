@@ -19,6 +19,15 @@ public class PlayerController : MonoBehaviour {
     public Text interactionText;
     [Tooltip("range for interaction")]
     public float interactRange = 10;
+    [Header("Place where the book will be held")]
+    public Transform bookHold;
+    private Transform currentBook; //So i can keep the book with the player and raycasting wont bug out because of bad code
+    public float bookSpeed = 3;
+    private float step;
+    private Vector3 bookOrginalLocation;
+    private Quaternion bookOrginalRotation;
+    private bool bookMovingToPlayer;
+    private bool bookMovingToHome;
     //Current layout is blue = false and red = true. If you want to change it, go to the mechanicFlip() function/method/whatever
     private bool mechanicToggle;
     private GameObject[] blueObjects;
@@ -40,6 +49,8 @@ public class PlayerController : MonoBehaviour {
         }
         //Need to run it once so everything gets a material and whatnot
         mechanicFlip();
+        //For moving the book
+        step = bookSpeed * Time.deltaTime;
     }
 
     //Didn't allow fast pressing of key
@@ -74,21 +85,54 @@ public class PlayerController : MonoBehaviour {
         else
         {
             interactionText.text = "";
+            //Edge case where you look at book but look away and slight error
+            lookingAtBook = false;
         }
-
 
         if (Input.GetKeyDown(interactKey) && lookingAtBook)
         {
+            currentBook = hit.transform;
             //Just making a method to organize (maybe complicate things)
             if (!hit.transform.GetComponent<Animator>().GetBool("OpenBook"))
             {
+                Debug.Log("HIT");
+                bookOrginalLocation = hit.transform.position;
+                Debug.Log(bookOrginalLocation);
+                //bookOrginalRotation = hit.transform.q
+                //Below this is new code for attempting to move book to hand and whatnot
+                while (Vector3.Distance(transform.position, hit.transform.position) < .3)
+                {
+                    hit.transform.position = Vector3.MoveTowards(hit.transform.position, transform.position, step);
+                }
                 hit.transform.GetComponent<Animator>().SetBool("OpenBook", true);
+                bookMovingToPlayer = true;
+            }
+            else if(bookMovingToPlayer)
+            {
+                //Need to let player close the book before it gets sent back, so we go to coroutine
+                StartCoroutine(returnBook());
+            }
+        }
+
+        //Keep the book with the player
+        if (bookMovingToPlayer)
+        {
+            currentBook.position = Vector3.MoveTowards(currentBook.position, bookHold.position, step);
+        }
+        if (bookMovingToHome)
+        {
+            if(Vector3.Distance(currentBook.position, bookOrginalLocation) > .1)
+            {
+                //Debug.Log("we got it ");
+                //Debug.Log(currentBook.position);
+                //Debug.Log("OG" + bookOrginalLocation.position);
+                currentBook.position = Vector3.MoveTowards(currentBook.position, bookOrginalLocation, step);
+                //Debug.Log(bookOrginalLocation.position);
             }
             else
             {
-                hit.transform.GetComponent<Animator>().SetBool("OpenBook", false);
+                bookMovingToHome = false;
             }
-            
         }
     }
 
@@ -125,5 +169,15 @@ public class PlayerController : MonoBehaviour {
             }
         }
         mechanicToggle = !mechanicToggle;
+    }
+
+    private IEnumerator returnBook()
+    {
+        hit.transform.GetComponent<Animator>().SetBool("OpenBook", false);
+        //We change this waitforseconds if we changethe animation length for closing the book
+        yield return new WaitForSeconds(2);
+        bookMovingToPlayer = false;
+        //Moving the book back to it's place hopefully
+        bookMovingToHome = true;
     }
 }
