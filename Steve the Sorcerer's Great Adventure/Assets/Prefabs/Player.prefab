@@ -420,9 +420,9 @@ MonoBehaviour:
   redOn: {fileID: 2100000, guid: b06077604ed56a64089bc385f3e0c7ce, type: 2}
   redOff: {fileID: 2100000, guid: 3d46b280957b1cd4eaf67e812f199bcf, type: 2}
   interactionText: {fileID: 0}
-  interactRange: 10
+  interactRange: 3
   bookHold: {fileID: 4706549706717392}
-  bookSpeed: 3
+  bookSpeed: 10
 --- !u!135 &135651432978600568
 SphereCollider:
   m_ObjectHideFlags: 1
