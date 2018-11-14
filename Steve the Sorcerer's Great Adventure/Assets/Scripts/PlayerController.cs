@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour {
     //for books
     private RaycastHit hit;
     private bool lookingAtBook;
+    public Transform bookLookAt;    //Because the model is all off and my animation is poorly planned, have to make the book lootat a empty game object away from the player
 
     private void Start()
     {
@@ -51,6 +52,7 @@ public class PlayerController : MonoBehaviour {
         mechanicFlip();
         //For moving the book
         step = bookSpeed * Time.deltaTime;
+        //So i don't use get component in update
     }
 
     //Didn't allow fast pressing of key
@@ -97,6 +99,7 @@ public class PlayerController : MonoBehaviour {
             {
                 Debug.Log("HIT");
                 bookOrginalLocation = hit.transform.position;
+                bookOrginalRotation = hit.transform.rotation;
                 Debug.Log(bookOrginalLocation);
                 //bookOrginalRotation = hit.transform.q
                 //Below this is new code for attempting to move book to hand and whatnot
@@ -118,6 +121,7 @@ public class PlayerController : MonoBehaviour {
         if (bookMovingToPlayer)
         {
             currentBook.position = Vector3.MoveTowards(currentBook.position, bookHold.position, step);
+            currentBook.LookAt(bookLookAt);
         }
         if (bookMovingToHome)
         {
@@ -127,6 +131,7 @@ public class PlayerController : MonoBehaviour {
                 //Debug.Log(currentBook.position);
                 //Debug.Log("OG" + bookOrginalLocation.position);
                 currentBook.position = Vector3.MoveTowards(currentBook.position, bookOrginalLocation, step);
+                currentBook.rotation = bookOrginalRotation;
                 //Debug.Log(bookOrginalLocation.position);
             }
             else

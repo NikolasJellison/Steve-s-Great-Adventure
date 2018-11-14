@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 222443944073488188}
   - component: {fileID: 114827979063903132}
   m_Layer: 5
-  m_Name: Text-Page
+  m_Name: Text-Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 95445259393850798}
   - component: {fileID: 114956781114229634}
   m_Layer: 0
-  m_Name: Book(test)
+  m_Name: Book(test) 1
   m_TagString: Book
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,23 +143,6 @@ GameObject:
   - component: {fileID: 23228918128906934}
   m_Layer: 0
   m_Name: Page2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1228618709498648
-GameObject:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 224726432607881446}
-  - component: {fileID: 222889852420647346}
-  - component: {fileID: 114194148404514614}
-  m_Layer: 5
-  m_Name: Text-Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -438,7 +421,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1165744241409382}
   m_LocalRotation: {x: -0.039756794, y: 0.58510876, z: -0.04097439, w: -0.8089427}
-  m_LocalPosition: {x: 30.622, y: 1.25, z: -13.687}
+  m_LocalPosition: {x: 30.813, y: 1.273, z: -13.75}
   m_LocalScale: {x: 2.46, y: 2.46, z: 2.46}
   m_Children:
   - {fileID: 4596022360356094}
@@ -1293,39 +1276,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114194148404514614
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1228618709498648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.51370597, g: 0.9811321, b: 0.5512157, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: 1f16052dfd5f6f54e94e97ecedd4c86b, type: 3}
-    m_FontSize: 2
-    m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 0
-    m_MaxSize: 40
-    m_Alignment: 0
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: Book Title
 --- !u!114 &114458384124083120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1395,11 +1345,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: This is a very long story about how i am trying to fill up a page but don't
-    have much to say so im just going to say that this model is terrible and has caused
-    to many problems and hours wasted trying to make it work because i am too far
-    into this to go back and correct the model and animation so yeah, thats what happened
-    it's unforuntae but it's fine. Very long sentance
+  m_Text: Book Title
 --- !u!114 &114956781114229634
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1412,23 +1358,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bookName: 
-  bookTitleText: {fileID: 114194148404514614}
-  bookPageText: {fileID: 114827979063903132}
+  bookTitleText: {fileID: 114827979063903132}
   bookText: 
-  bookStory: 
 --- !u!222 &222443944073488188
 CanvasRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1057129848352796}
-  m_CullTransparentMesh: 0
---- !u!222 &222889852420647346
-CanvasRenderer:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1228618709498648}
   m_CullTransparentMesh: 0
 --- !u!223 &223884705387700264
 Canvas:
@@ -1456,44 +1393,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1057129848352796}
-  m_LocalRotation: {x: -0.010651466, y: -0.64382845, z: 0.028143084, w: 0.764578}
-  m_LocalPosition: {x: 0, y: 0, z: -0.051}
-  m_LocalScale: {x: 1.0000012, y: 1.0000012, z: 1.000001}
-  m_Children: []
-  m_Father: {fileID: 224497246521433432}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 1.143, y: -80.16701, z: 3.2540002}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.018, y: -0.114}
-  m_SizeDelta: {x: 0.4364, y: 0.6041}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!224 &224497246521433432
-RectTransform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1697412611506466}
-  m_LocalRotation: {x: 0.00086097233, y: 0.9857433, z: -0.057085566, w: 0.15827444}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.40650415, y: 0.40650403, z: 0.40650412}
-  m_Children:
-  - {fileID: 224726432607881446}
-  - {fileID: 224063500177448752}
-  m_Father: {fileID: 4329734866682840}
-  m_RootOrder: 16
-  m_LocalEulerAnglesHint: {x: 0, y: -270, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1, y: 1}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!224 &224726432607881446
-RectTransform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1228618709498648}
   m_LocalRotation: {x: -0.020855695, y: 0.020855932, z: 0.70679915, w: 0.7067992}
   m_LocalPosition: {x: 0, y: 0, z: -0.398}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -1505,4 +1404,23 @@ RectTransform:
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.05, y: -0.089}
   m_SizeDelta: {x: 0.35247, y: 0.1864}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224497246521433432
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1697412611506466}
+  m_LocalRotation: {x: 0.00086097233, y: 0.9857433, z: -0.057085566, w: 0.15827444}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.40650415, y: 0.40650403, z: 0.40650412}
+  m_Children:
+  - {fileID: 224063500177448752}
+  m_Father: {fileID: 4329734866682840}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: -270, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}

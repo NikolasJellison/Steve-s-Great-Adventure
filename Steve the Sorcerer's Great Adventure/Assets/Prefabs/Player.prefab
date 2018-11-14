@@ -63,6 +63,7 @@ Transform:
   m_Children:
   - {fileID: 400000}
   - {fileID: 4414202547523416}
+  - {fileID: 4807108816725762}
   - {fileID: 4706549706717392}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -301,6 +302,21 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100006}
   m_IsPrefabAsset: 1
+--- !u!1 &1029684585170102
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4807108816725762}
+  m_Layer: 0
+  m_Name: BookHold
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1281793299308296
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,7 +344,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4706549706717392}
   m_Layer: 0
-  m_Name: BookHold
+  m_Name: BookLook
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -353,8 +369,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1840464880280374}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.86, y: 0.5999999, z: 1.59}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400002}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4807108816725762
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1029684585170102}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: -0.00000016292068}
-  m_LocalPosition: {x: 0.11, y: 0.17, z: 1.36}
+  m_LocalPosition: {x: 0.186, y: 0.17, z: 0.993}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400002}
@@ -421,8 +450,9 @@ MonoBehaviour:
   redOff: {fileID: 2100000, guid: 3d46b280957b1cd4eaf67e812f199bcf, type: 2}
   interactionText: {fileID: 0}
   interactRange: 3
-  bookHold: {fileID: 4706549706717392}
+  bookHold: {fileID: 4807108816725762}
   bookSpeed: 10
+  bookLookAt: {fileID: 4706549706717392}
 --- !u!135 &135651432978600568
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -19,14 +19,12 @@ public class Movebetween : MonoBehaviour {
         transform.position = Vector3.MoveTowards(transform.position, waypoints[counter].position, step);
         if(Vector3.Distance(transform.position, waypoints[counter].position) < .1)
         {
-            if(counter <= waypoints.Length)
-            {
-                counter++;
-            }
-            else
+            counter++;
+            if(counter >= waypoints.Length)
             {
                 counter = 0;
             }
         }
+        //Debug.Log(counter);
 	}
 }

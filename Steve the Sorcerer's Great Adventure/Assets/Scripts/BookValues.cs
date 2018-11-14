@@ -7,7 +7,8 @@ public class BookValues : MonoBehaviour {
 
     public string bookName;
     public Text bookTitleText;
-    public string bookText;
+    public Text bookPageText;
+    public string bookStory;
 
     private void Start()
     {
@@ -19,5 +20,9 @@ public class BookValues : MonoBehaviour {
     public void nameBook()
     {
         bookTitleText.text = bookName;
+        if(bookStory != "")
+        {
+            bookPageText.text = bookStory;
+        }
     }
 }
