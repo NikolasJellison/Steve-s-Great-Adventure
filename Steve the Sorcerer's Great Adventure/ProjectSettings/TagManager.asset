@@ -7,6 +7,16 @@ TagManager:
   - Red
   - Blue
   - Book
+  - Lava
+  - Book-Fire
+  - Book-Ice
+  - Book-Earth
+  - Book-Wind
+  - Artifact-Fire
+  - Artifact-Ice
+  - Artifact-Earth
+  - Artifact-Wind
+  - GameManager
   layers:
   - Default
   - TransparentFX

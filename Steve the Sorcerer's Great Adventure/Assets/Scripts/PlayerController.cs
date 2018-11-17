@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour {
     //We use tags to distinguish which objects can get toggled in this game
 
     //Key for the mechanic
+    [Header("Reference game manager")]
+    public GameManager gameManager;
     [Tooltip("Which key activates the toggle of the environment")]public KeyCode mechanicKey = KeyCode.E;
     [Tooltip("Which key activates interaction (books)")] public KeyCode interactKey = KeyCode.Q;
     [Header("Materials that will get swaped")]
@@ -16,9 +18,15 @@ public class PlayerController : MonoBehaviour {
     public Material blueOff;
     public Material redOn;
     public Material redOff;
+    [Header("Get these from 'Canvas.UI' prefab")]
     public Text interactionText;
+    public Text notificationText;
     [Tooltip("range for interaction")]
     public float interactRange = 10;
+    public float notificationLength = 10;
+    [Header("Arm stuff (in player, under camera)")]
+    public GameObject arm;
+    public Transform hand;
     [Header("Place where the book will be held")]
     public Transform bookHold;
     private Transform currentBook; //So i can keep the book with the player and raycasting wont bug out because of bad code
@@ -52,7 +60,9 @@ public class PlayerController : MonoBehaviour {
         mechanicFlip();
         //For moving the book
         step = bookSpeed * Time.deltaTime;
-        //So i don't use get component in update
+
+        //Disable arm for start
+        arm.SetActive(false);
     }
 
     //Didn't allow fast pressing of key
@@ -71,10 +81,10 @@ public class PlayerController : MonoBehaviour {
             mechanicFlip();
         }
 
-        //Raycasting for books
-        if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, interactRange))
+        //Raycasting for books (include the arm active thing so you don't pick up a book while holding the artifact
+        if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, interactRange) && !arm.activeSelf)
         {
-            if (hit.transform.tag == "Book")
+            if (hit.transform.tag.Contains("Book"))
             {
                 lookingAtBook = true; 
                 interactionText.text = "Press " + interactKey + " to read " + hit.transform.GetComponent<BookValues>().bookName;
@@ -91,16 +101,16 @@ public class PlayerController : MonoBehaviour {
             lookingAtBook = false;
         }
 
-        if (Input.GetKeyDown(interactKey) && lookingAtBook)
+        if (Input.GetKeyDown(interactKey) && lookingAtBook && !arm.activeSelf)
         {
             currentBook = hit.transform;
             //Just making a method to organize (maybe complicate things)
             if (!hit.transform.GetComponent<Animator>().GetBool("OpenBook"))
             {
-                Debug.Log("HIT");
+                //Debug.Log("HIT");
                 bookOrginalLocation = hit.transform.position;
                 bookOrginalRotation = hit.transform.rotation;
-                Debug.Log(bookOrginalLocation);
+                //Debug.Log(bookOrginalLocation);
                 //bookOrginalRotation = hit.transform.q
                 //Below this is new code for attempting to move book to hand and whatnot
                 while (Vector3.Distance(transform.position, hit.transform.position) < .3)
@@ -178,11 +188,68 @@ public class PlayerController : MonoBehaviour {
 
     private IEnumerator returnBook()
     {
+        //Sending junk books back
+        if(currentBook.tag == "Book")
+        {
+            hit.transform.GetComponent<Animator>().SetBool("OpenBook", false);
+            //We change this waitforseconds if we changethe animation length for closing the book
+            yield return new WaitForSeconds(2);
+            bookMovingToPlayer = false;
+            //Moving the book back to it's place hopefully
+            bookMovingToHome = true;
+        }
+        else
+        {
+            //send a string in there because we are destorying the book itself so can't read the tag
+            StartCoroutine(obtainElement(currentBook.tag));
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Lava")
+        {
+            gameManager.respawn();
+        }
+    }
+    private IEnumerator obtainElement(string bookTag)
+    {
+        //time to close the book and maybe particle effects here at some point?
         hit.transform.GetComponent<Animator>().SetBool("OpenBook", false);
         //We change this waitforseconds if we changethe animation length for closing the book
         yield return new WaitForSeconds(2);
         bookMovingToPlayer = false;
-        //Moving the book back to it's place hopefully
-        bookMovingToHome = true;
+        //Destroy book
+        Destroy(currentBook.gameObject);
+
+        if (bookTag.Contains("Fire"))
+        {
+            notificationText.text = "You have learned the power of the FIRE element :D";
+            Instantiate(Resources.Load("FireArtifact"), hand);
+            //Debug.Log("Did the instantiaion");
+        }
+        else if (bookTag.Contains("Ice"))
+        {
+            //Ice element stuff
+            notificationText.text = "You have learned the power of the ICE element :D";
+            Instantiate(Resources.Load("IceArtifact"), hand);
+        }
+        else if (bookTag.Contains("Earth"))
+        {
+            //Earth element stuff
+            notificationText.text = "You have learned the power of the EARTH element :D";
+            Instantiate(Resources.Load("EarthArtifact"), hand);
+        }
+        else if (bookTag.Contains("Wind"))
+        {
+            //Wind element stuff
+            notificationText.text = "You have learned the power of the WIND element :D";
+            Instantiate(Resources.Load("WindArtifact"), hand);
+        }
+
+        arm.SetActive(true);
+
+        yield return new WaitForSeconds(notificationLength);
+        notificationText.text = "";
     }
 }

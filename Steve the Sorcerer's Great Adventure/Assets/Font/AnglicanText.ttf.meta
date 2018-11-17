@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: f218c929608c75b4e81d5536101faada
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: AnglicanText
+  fontNames:
+  - AnglicanText
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 0372354984b54b04096386948630772f, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

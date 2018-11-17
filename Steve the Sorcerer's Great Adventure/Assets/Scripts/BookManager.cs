@@ -5,19 +5,22 @@ using UnityEngine;
 public class BookManager : MonoBehaviour {
 
     private string[] bookNames;
+    private string[] bookStory;
     private GameObject[] books;
     private int vol = 2;
 
 	// Use this for initialization
 	void Start () {
         bookNames = System.IO.File.ReadAllLines("Assets/Resources/BookNames.txt");
+        bookStory = System.IO.File.ReadAllLines("Assets/Resources/BookStories.txt");
+        /* This was for debug
         for(int i =0; i < bookNames.Length; i++)
         {
             Debug.Log("Line in Text Document " + i + ". Reads " + bookNames[i] + "\n");
         }
-
+        */
         books = GameObject.FindGameObjectsWithTag("Book");
-        Debug.Log(bookNames.Length);
+        Debug.Log("Number of unique book titles found: " + bookNames.Length + "\n");
         for(int i = 0; i < books.Length; i++)
         {
             if(i >= bookNames.Length)
@@ -48,6 +51,15 @@ public class BookManager : MonoBehaviour {
                 //Debug.Log("Book Name: " + bookNames[i]);
             }
             
+        }
+
+        for(int i= 0; i < books.Length; i++)
+        {
+            //assigning the stories here, i could've just done it with the book titles, but Then it would repeat stories 
+            //Even though the stories aren't readable, i still want them to be unique for some reason
+
+            //Only 1 line in the document for now, if anyone cares to add more, then this part gets rewritten to acocunt for more lines
+            books[i].GetComponent<BookValues>().bookStory = bookStory[0];
         }
 	}
 	
