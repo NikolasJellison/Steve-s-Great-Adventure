@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour {
     public GameManager gameManager;
     [Tooltip("Which key activates the toggle of the environment")]public KeyCode mechanicKey = KeyCode.E;
     [Tooltip("Which key activates interaction (books)")] public KeyCode interactKey = KeyCode.Q;
+    [Tooltip("Key for shooting ice-staff")] public KeyCode iceStaffShoot = KeyCode.Mouse0;
+    [Tooltip("Key for shooting fire-staff")] public KeyCode fireStaffShoot = KeyCode.Mouse1;
     [Header("Materials that will get swaped")]
     public Material blueOn;
     public Material blueOff;
@@ -45,6 +47,13 @@ public class PlayerController : MonoBehaviour {
     private RaycastHit hit;
     private bool lookingAtBook;
     public Transform bookLookAt;    //Because the model is all off and my animation is poorly planned, have to make the book lootat a empty game object away from the player
+    //Staffs
+    [Header("Projectiles")]
+    public GameObject iceProjectile;
+    public GameObject fireProjectile;
+    public float projectileSpeed = 300;
+    private bool hasIceStaff;
+    private bool hasFireStaff;
 
     private void Start()
     {
@@ -150,6 +159,16 @@ public class PlayerController : MonoBehaviour {
                 bookMovingToHome = false;
             }
         }
+
+        //Projectiles
+        if(Input.GetKeyDown(iceStaffShoot) && hasIceStaff)
+        {
+            shootProjectile("Ice");
+        }
+        if (Input.GetKeyDown(fireStaffShoot) && hasFireStaff)
+        {
+            shootProjectile("Fire");
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -160,7 +179,35 @@ public class PlayerController : MonoBehaviour {
         }
         else if (other.tag == "Staff-Ice")
         {
-            Instantiate(Resources.Load("Staff-Ice"), staffHold);
+            arm.SetActive(true);
+            Instantiate(Resources.Load("Staff-Ice-Hold"), staffHold);
+            Destroy(other.gameObject);
+            hasIceStaff = true;
+        }
+        else if (other.tag == "Staff-Fire")
+        {
+            arm.SetActive(true);
+            Instantiate(Resources.Load("Staff-Fire-Hold"), staffHold);
+            Destroy(other.gameObject);
+            hasFireStaff = true;
+        }
+    }
+    
+    private void shootProjectile(string type)
+    {
+        GameObject tempObject;
+        
+        switch (type)
+        {
+            case "Ice":
+                tempObject = Instantiate(iceProjectile, transform.position + transform.forward + Vector3.up * .9f, transform.rotation);
+                tempObject.GetComponent<Rigidbody>().AddForce(transform.forward * projectileSpeed);
+                break;
+
+            case "Fire":
+                tempObject = Instantiate(fireProjectile, transform.position + transform.forward + Vector3.up * .9f, transform.rotation);
+                tempObject.GetComponent<Rigidbody>().AddForce(transform.forward * projectileSpeed);
+                break;
         }
     }
 

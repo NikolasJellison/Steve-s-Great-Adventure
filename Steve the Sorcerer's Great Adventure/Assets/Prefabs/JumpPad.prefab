@@ -109,3 +109,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpPadStrength: 10000
+  jumpPadOn: 0

@@ -41,8 +41,8 @@ GameObject:
   - component: {fileID: 23965270460765138}
   - component: {fileID: 65342449116370304}
   m_Layer: 0
-  m_Name: Staff-Ice
-  m_TagString: Staff-Ice
+  m_Name: Staff-Fire
+  m_TagString: Staff-Fire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89,7 +89,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: a2c9097a732f7a94db73bdd945d4cd6f, type: 2}
+  - {fileID: 2100000, guid: b06077604ed56a64089bc385f3e0c7ce, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -9,46 +9,48 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1798945669658670}
+  m_RootGameObject: {fileID: 1506751981417722}
   m_IsPrefabAsset: 1
---- !u!1 &1798945669658670
+--- !u!1 &1506751981417722
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4655122947301044}
-  - component: {fileID: 33344796868291954}
-  - component: {fileID: 23489493041387042}
-  - component: {fileID: 65768392946231088}
-  - component: {fileID: 114464430234983218}
+  - component: {fileID: 4390068792138932}
+  - component: {fileID: 33730279993413694}
+  - component: {fileID: 23106187166060964}
+  - component: {fileID: 135478071249683314}
+  - component: {fileID: 135729185665423796}
+  - component: {fileID: 54562744598579122}
+  - component: {fileID: 114293319213140296}
   m_Layer: 0
-  m_Name: FuseBox
-  m_TagString: FuseBox
+  m_Name: Ice-Projectile
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4655122947301044
+--- !u!4 &4390068792138932
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1798945669658670}
+  m_GameObject: {fileID: 1506751981417722}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30.293, y: 1.56, z: -19.638}
-  m_LocalScale: {x: 0.273, y: 1.619, z: 1.677}
+  m_LocalPosition: {x: 6.409238, y: 2.1129465, z: -2.8555353}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23489493041387042
+--- !u!23 &23106187166060964
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1798945669658670}
+  m_GameObject: {fileID: 1506751981417722}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -58,7 +60,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 172597d232aa5aa4bb4d677cdd4960cb, type: 2}
+  - {fileID: 2100000, guid: a2c9097a732f7a94db73bdd945d4cd6f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78,35 +80,61 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33344796868291954
+--- !u!33 &33730279993413694
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1798945669658670}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65768392946231088
-BoxCollider:
+  m_GameObject: {fileID: 1506751981417722}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54562744598579122
+Rigidbody:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1798945669658670}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
+  m_GameObject: {fileID: 1506751981417722}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114464430234983218
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &114293319213140296
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1798945669658670}
+  m_GameObject: {fileID: 1506751981417722}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a47930fd39f037147ab7a415572e2a98, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c9ac4dc70bfee040bca10042b6d0fab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hostJumpPad: {fileID: 0}
-  FuseBoxType: 0
+  projectileType: 1
+--- !u!135 &135478071249683314
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1506751981417722}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &135729185665423796
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1506751981417722}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

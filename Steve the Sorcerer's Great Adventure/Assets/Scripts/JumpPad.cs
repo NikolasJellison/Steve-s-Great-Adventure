@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class JumpPad : MonoBehaviour {
 
-    public float jumpPadStrength = 100;
-    [HideInInspector]public bool jumpPadOn;
+    public float jumpPadStrength = 1000;
+    public bool jumpPadOn;
 
 
     private void OnTriggerEnter(Collider other)
