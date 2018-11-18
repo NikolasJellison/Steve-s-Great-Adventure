@@ -17,6 +17,9 @@ TagManager:
   - Artifact-Earth
   - Artifact-Wind
   - GameManager
+  - JumpPad
+  - Staff-Ice
+  - Staff-Fire
   layers:
   - Default
   - TransparentFX

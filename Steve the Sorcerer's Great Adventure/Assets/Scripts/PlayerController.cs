@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour {
     [Header("Arm stuff (in player, under camera)")]
     public GameObject arm;
     public Transform hand;
+    public Transform staffHold;
     [Header("Place where the book will be held")]
     public Transform bookHold;
     private Transform currentBook; //So i can keep the book with the player and raycasting wont bug out because of bad code
@@ -151,6 +152,18 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Lava")
+        {
+            gameManager.respawn();
+        }
+        else if (other.tag == "Staff-Ice")
+        {
+            Instantiate(Resources.Load("Staff-Ice"), staffHold);
+        }
+    }
+
     private void mechanicFlip()
     {
         if (!mechanicToggle)
@@ -205,13 +218,6 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Lava")
-        {
-            gameManager.respawn();
-        }
-    }
     private IEnumerator obtainElement(string bookTag)
     {
         //time to close the book and maybe particle effects here at some point?

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -89,7 +89,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000002, guid: 851910bb3c4505442ba0d1b5b6cc52b4,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -9019,7 +9020,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh43330
+  m_Name: pb_Mesh127116
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -11599,6 +11600,12 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 475b905fe3b32864fb3448b79d6bc815, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &791049817 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114444949961054252, guid: 255ffff02b3af11418baa850b5040a5e,
+    type: 2}
+  m_PrefabInternal: {fileID: 481212510}
+  m_Script: {fileID: 11500000, guid: 5573df8657332ab46b6ee361d0ecccad, type: 3}
 --- !u!1 &791770140
 GameObject:
   m_ObjectHideFlags: 0
@@ -25767,7 +25774,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh16684
+  m_Name: pb_Mesh127088
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -27394,6 +27401,11 @@ Prefab:
       propertyPath: interactionText
       value: 
       objectReference: {fileID: 1852652185}
+    - target: {fileID: 114552624798693808, guid: c6453f8e1f814744d8b94e5a6d1f9942,
+        type: 2}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 791049817}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 2}
   m_IsPrefabAsset: 0
