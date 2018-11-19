@@ -51,6 +51,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4818860893693940}
+  - component: {fileID: 65513303982399732}
   m_Layer: 0
   m_Name: Tower4
   m_TagString: Untagged
@@ -181,7 +182,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1215719166706056}
   m_LocalRotation: {x: 0, y: 0.9961947, z: -0, w: -0.08715578}
-  m_LocalPosition: {x: 135.84, y: 40.47, z: 142.68}
+  m_LocalPosition: {x: -19.72, y: -25, z: -8.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4795022038606954}
@@ -274,3 +275,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1039740709712086}
   m_Mesh: {fileID: 4300002, guid: e821bb0b882857943850365641c2ed8b, type: 3}
+--- !u!65 &65513303982399732
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1215719166706056}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.66785, y: 34.71012, z: 5.615435}
+  m_Center: {x: -0.16722679, y: 16.85506, z: 0.19737051}
