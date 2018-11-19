@@ -329,7 +329,7 @@ GameObject:
   m_Layer: 0
   m_Name: Staff-Hold
   m_TagString: Untagged
-  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -512,16 +512,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e891b229d538c90489f59b69641cac77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 114444949961054252, guid: 255ffff02b3af11418baa850b5040a5e,
+    type: 2}
   mechanicKey: 101
   interactKey: 113
   iceStaffShoot: 323
+  fireStaffShoot: 324
   blueOn: {fileID: 2100000, guid: e3695d2c629a5ef49af246a0ca1415d4, type: 2}
   blueOff: {fileID: 2100000, guid: 563b80c61c941fc479b4dd1b2e8674bc, type: 2}
   redOn: {fileID: 2100000, guid: b06077604ed56a64089bc385f3e0c7ce, type: 2}
   redOff: {fileID: 2100000, guid: 3d46b280957b1cd4eaf67e812f199bcf, type: 2}
-  interactionText: {fileID: 0}
-  notificationText: {fileID: 0}
+  interactionText: {fileID: 114918322752025366, guid: f57b651b8441ca140b849d5399f526db,
+    type: 2}
+  notificationText: {fileID: 114863905951417884, guid: f57b651b8441ca140b849d5399f526db,
+    type: 2}
   interactRange: 3
   notificationLength: 10
   arm: {fileID: 1430452072516266}
