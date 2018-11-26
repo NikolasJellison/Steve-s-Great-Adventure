@@ -13,13 +13,19 @@ public class Projectile : MonoBehaviour {
         {
             other.GetComponent<FuseBox>().fuseBoxHit();
         }
-        else
+        else if(other.tag != "Player")
         {
             Destroy(gameObject);
         }
     }
+
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject);
+        //Had issue where the projectiles would destroy on player if you looked too high
+        //Correction, the objects were hitting the collider for the 'arm' object, so I taged the arm as player
+        if(collision.gameObject.tag != "Player")
+        {
+            Destroy(gameObject);
+        }
     }
 }

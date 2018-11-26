@@ -201,17 +201,18 @@ public class PlayerController : MonoBehaviour {
     private void shootProjectile(string type)
     {
         GameObject tempObject;
-        
+        //Hvae the issue where the projectiles aren't launching from the staff and it looks weird
+        //The projectiles were hitting the 'arm' and the ball on the temp ice staffs (both are now tagged as player)
         switch (type)
         {
             case "Ice":
-                tempObject = Instantiate(iceProjectile, transform.position + transform.forward + Vector3.up * .9f, transform.rotation);
-                tempObject.GetComponent<Rigidbody>().AddForce(transform.forward * projectileSpeed);
+                tempObject = Instantiate(iceProjectile, staffHold.transform.position - staffHold.transform.forward + Vector3.up * .9f, staffHold.transform.rotation);
+                tempObject.GetComponent<Rigidbody>().AddForce(-staffHold.transform.forward * projectileSpeed);
                 break;
 
             case "Fire":
-                tempObject = Instantiate(fireProjectile, transform.position + transform.forward + Vector3.up * .9f, transform.rotation);
-                tempObject.GetComponent<Rigidbody>().AddForce(transform.forward * projectileSpeed);
+                tempObject = Instantiate(fireProjectile, staffHold.transform.position - staffHold.transform.forward + Vector3.up * .9f, staffHold.transform.rotation);
+                tempObject.GetComponent<Rigidbody>().AddForce(-staffHold.transform.forward * projectileSpeed);
                 break;
         }
     }
