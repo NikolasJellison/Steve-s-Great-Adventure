@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
     //Key for the mechanic
     [Header("Reference game manager")]
     public GameManager gameManager;
+    public Camera cam;
     [Tooltip("Which key activates the toggle of the environment")]public KeyCode mechanicKey = KeyCode.E;
     [Tooltip("Which key activates interaction (books)")] public KeyCode interactKey = KeyCode.Q;
     [Tooltip("Key for shooting ice-staff")] public KeyCode iceStaffShoot = KeyCode.Mouse0;
@@ -47,6 +48,7 @@ public class PlayerController : MonoBehaviour {
     private RaycastHit hit;
     private bool lookingAtBook;
     public Transform bookLookAt;    //Because the model is all off and my animation is poorly planned, have to make the book lootat a empty game object away from the player
+    private Ray interactRay;
     //Staffs
     [Header("Projectiles")]
     public GameObject iceProjectile;
@@ -91,8 +93,11 @@ public class PlayerController : MonoBehaviour {
             mechanicFlip();
         }
 
+        //better raycasting for book
+        interactRay = cam.ScreenPointToRay(Input.mousePosition);
+
         //Raycasting for books (include the arm active thing so you don't pick up a book while holding the artifact
-        if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, interactRange) && !arm.activeSelf)
+        if (Physics.Raycast(interactRay, out hit, interactRange) && !arm.activeSelf)
         {
             if (hit.transform.tag.Contains("Book"))
             {

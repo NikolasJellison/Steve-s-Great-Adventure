@@ -6044,11 +6044,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114863905951417884, guid: f57b651b8441ca140b849d5399f526db,
-        type: 2}
-      propertyPath: m_Text
-      value: Notification text
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f57b651b8441ca140b849d5399f526db, type: 2}
   m_IsPrefabAsset: 0
