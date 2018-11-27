@@ -4,23 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Red
-  - Blue
-  - Book
-  - Lava
-  - Book-Fire
-  - Book-Ice
-  - Book-Earth
-  - Book-Wind
-  - Artifact-Fire
-  - Artifact-Ice
-  - Artifact-Earth
-  - Artifact-Wind
-  - GameManager
-  - JumpPad
-  - Staff-Ice
-  - Staff-Fire
-  - FuseBox
+  - Shootable
   layers:
   - Default
   - TransparentFX
@@ -30,9 +14,9 @@ TagManager:
   - UI
   - 
   - 
-  - PostProcessing
-  - 
-  - 
+  - Lighting
+  - Ground
+  - Postprocessing
   - 
   - 
   - 
@@ -55,6 +39,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Fire
+    uniqueID: 3804908061
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
