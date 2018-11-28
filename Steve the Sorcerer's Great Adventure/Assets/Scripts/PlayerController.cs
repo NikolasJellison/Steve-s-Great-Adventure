@@ -56,6 +56,9 @@ public class PlayerController : MonoBehaviour {
     public float projectileSpeed = 300;
     private bool hasIceStaff;
     private bool hasFireStaff;
+    [Header("Sounds")]
+    public AudioSource discoverySound;
+    public AudioSource fireballSound;
 
     private void Start()
     {
@@ -188,6 +191,8 @@ public class PlayerController : MonoBehaviour {
             Instantiate(Resources.Load("Staff-Ice-Hold"), staffHold);
             Destroy(other.gameObject);
             hasIceStaff = true;
+            //Player Discovery sound
+            discoverySound.Play();
         }
         else if (other.tag == "Staff-Fire")
         {
@@ -195,6 +200,8 @@ public class PlayerController : MonoBehaviour {
             Instantiate(Resources.Load("Staff-Fire-Hold"), staffHold);
             Destroy(other.gameObject);
             hasFireStaff = true;
+            //Player Discovery sound
+            discoverySound.Play();
         }
     }
     
@@ -213,6 +220,8 @@ public class PlayerController : MonoBehaviour {
             case "Fire":
                 tempObject = Instantiate(fireProjectile, staffHold.transform.position - staffHold.transform.forward + Vector3.up * .9f, staffHold.transform.rotation);
                 tempObject.GetComponent<Rigidbody>().AddForce(-staffHold.transform.forward * projectileSpeed);
+                //fireball sound
+                fireballSound.Play();
                 break;
         }
     }
@@ -280,7 +289,9 @@ public class PlayerController : MonoBehaviour {
         bookMovingToPlayer = false;
         //Destroy book
         Destroy(currentBook.gameObject);
-
+        //Play Sound
+        discoverySound.Play();
+        //Figure out which book it is to give the player some info
         if (bookTag.Contains("Fire"))
         {
             notificationText.text = "You have learned the power of the FIRE element :D";

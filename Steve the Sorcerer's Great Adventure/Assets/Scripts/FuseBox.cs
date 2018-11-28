@@ -6,11 +6,13 @@ public class FuseBox : MonoBehaviour {
 
     public GameObject hostJumpPad;
     public Material activationColor;
+    public GameObject particlesActivation;
     [Header("1 = Ice, 2 = Fire")] public int FuseBoxType;
 
     public void fuseBoxHit()
     {
         hostJumpPad.GetComponent<JumpPad>().jumpPadOn = true;
         GetComponent<Renderer>().material = activationColor;
+        particlesActivation.SetActive(true);
     }
 }
