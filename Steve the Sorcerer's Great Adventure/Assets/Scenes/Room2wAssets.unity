@@ -22294,7 +22294,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4e6bc3cd0bd031c448e987215b2e05ae, type: 2}
+      objectReference: {fileID: 2100000, guid: 7bfa550f0dfaa43e0842bc954ed03e42, type: 2}
     - target: {fileID: 64200520480973492, guid: 3ca1e3a0b0ef84989a4c938d699a8b86,
         type: 2}
       propertyPath: m_Mesh
@@ -30073,7 +30073,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4e6bc3cd0bd031c448e987215b2e05ae, type: 2}
+      objectReference: {fileID: 2100000, guid: 7bfa550f0dfaa43e0842bc954ed03e42, type: 2}
     - target: {fileID: 64200520480973492, guid: 3ca1e3a0b0ef84989a4c938d699a8b86,
         type: 2}
       propertyPath: m_Mesh
@@ -33443,7 +33443,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4e6bc3cd0bd031c448e987215b2e05ae, type: 2}
+      objectReference: {fileID: 2100000, guid: 7bfa550f0dfaa43e0842bc954ed03e42, type: 2}
     - target: {fileID: 64200520480973492, guid: 3ca1e3a0b0ef84989a4c938d699a8b86,
         type: 2}
       propertyPath: m_Mesh
@@ -38223,7 +38223,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4e6bc3cd0bd031c448e987215b2e05ae, type: 2}
+      objectReference: {fileID: 2100000, guid: 7bfa550f0dfaa43e0842bc954ed03e42, type: 2}
     - target: {fileID: 1050899496159146, guid: 3ca1e3a0b0ef84989a4c938d699a8b86, type: 2}
       propertyPath: m_Name
       value: Full bookcase (7)
@@ -51536,7 +51536,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4e6bc3cd0bd031c448e987215b2e05ae, type: 2}
+      objectReference: {fileID: 2100000, guid: 7bfa550f0dfaa43e0842bc954ed03e42, type: 2}
     - target: {fileID: 1050899496159146, guid: 3ca1e3a0b0ef84989a4c938d699a8b86, type: 2}
       propertyPath: m_Name
       value: Full bookcase (5)
@@ -52743,7 +52743,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4e6bc3cd0bd031c448e987215b2e05ae, type: 2}
+      objectReference: {fileID: 2100000, guid: 7bfa550f0dfaa43e0842bc954ed03e42, type: 2}
     - target: {fileID: 64200520480973492, guid: 3ca1e3a0b0ef84989a4c938d699a8b86,
         type: 2}
       propertyPath: m_Mesh
@@ -60121,7 +60121,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4e6bc3cd0bd031c448e987215b2e05ae, type: 2}
+      objectReference: {fileID: 2100000, guid: 7bfa550f0dfaa43e0842bc954ed03e42, type: 2}
     - target: {fileID: 64200520480973492, guid: 3ca1e3a0b0ef84989a4c938d699a8b86,
         type: 2}
       propertyPath: m_Mesh
@@ -62872,7 +62872,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4e6bc3cd0bd031c448e987215b2e05ae, type: 2}
+      objectReference: {fileID: 2100000, guid: 7bfa550f0dfaa43e0842bc954ed03e42, type: 2}
     - target: {fileID: 4519079915311308, guid: 3ca1e3a0b0ef84989a4c938d699a8b86, type: 2}
       propertyPath: m_LocalScale.x
       value: 108.65605
@@ -68749,7 +68749,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh26398
+  m_Name: pb_Mesh30044
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -87779,7 +87779,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4e6bc3cd0bd031c448e987215b2e05ae, type: 2}
+      objectReference: {fileID: 2100000, guid: 7bfa550f0dfaa43e0842bc954ed03e42, type: 2}
     - target: {fileID: 64200520480973492, guid: 3ca1e3a0b0ef84989a4c938d699a8b86,
         type: 2}
       propertyPath: m_Mesh
