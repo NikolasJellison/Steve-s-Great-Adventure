@@ -11,9 +11,12 @@ public class PlayerController : MonoBehaviour {
     //Key for the mechanic
     [Header("Reference game manager")]
     public GameManager gameManager;
+    public BookManager bookManager;
     public Camera cam;
+    public Image crosshair;
     [Tooltip("Which key activates the toggle of the environment")]public KeyCode mechanicKey = KeyCode.E;
     [Tooltip("Which key activates interaction (books)")] public KeyCode interactKey = KeyCode.Q;
+    [Tooltip("Key for opening inventory")] public KeyCode openInventoryKey = KeyCode.T;
     [Tooltip("Key for shooting ice-staff")] public KeyCode iceStaffShoot = KeyCode.Mouse0;
     [Tooltip("Key for shooting fire-staff")] public KeyCode fireStaffShoot = KeyCode.Mouse1;
     [Header("Materials that will get swaped")]
@@ -32,6 +35,8 @@ public class PlayerController : MonoBehaviour {
     public Transform hand;
     public Transform staffHold;
     [Header("Place where the book will be held")]
+    //Library
+    public GameObject[] instructionBooks;
     public Transform bookHold;
     private Transform currentBook; //So i can keep the book with the player and raycasting wont bug out because of bad code
     public float bookSpeed = 3;
@@ -40,6 +45,8 @@ public class PlayerController : MonoBehaviour {
     private Quaternion bookOrginalRotation;
     private bool bookMovingToPlayer;
     private bool bookMovingToHome;
+    private bool holdingBook;
+    public GameObject inventoryPanel;
     //Current layout is blue = false and red = true. If you want to change it, go to the mechanicFlip() function/method/whatever
     private bool mechanicToggle;
     private GameObject[] blueObjects;
@@ -78,6 +85,8 @@ public class PlayerController : MonoBehaviour {
 
         //Disable arm for start
         arm.SetActive(false);
+        //Diable inventory Pannel
+        inventoryPanel.SetActive(false);
     }
 
     //Didn't allow fast pressing of key
@@ -91,6 +100,19 @@ public class PlayerController : MonoBehaviour {
     */
     private void Update()
     {
+        //Inventory Pause
+        if (Input.GetKeyDown(openInventoryKey))
+        {
+            if (!inventoryPanel.activeSelf)
+            {
+                openInventory();
+            }
+            else
+            {
+                closeInventory();
+            }
+        }
+
         if (Input.GetKeyDown(mechanicKey))
         {
             mechanicFlip();
@@ -140,6 +162,11 @@ public class PlayerController : MonoBehaviour {
             }
             else if(bookMovingToPlayer)
             {
+                //Update inventory with current hint 
+                if (currentBook.tag.Contains("Instruction-OG"))
+                {
+                    bookManager.unlockInstruction();
+                }
                 //Need to let player close the book before it gets sent back, so we go to coroutine
                 StartCoroutine(returnBook());
             }
@@ -289,10 +316,12 @@ public class PlayerController : MonoBehaviour {
         bookMovingToPlayer = false;
         //Destroy book
         Destroy(currentBook.gameObject);
-        //Play Sound
-        discoverySound.Play();
         //Figure out which book it is to give the player some info
-        if (bookTag.Contains("Fire"))
+        if (currentBook.tag.Contains("Instruction"))
+        {
+            yield break;
+        }
+        else if (bookTag.Contains("Fire"))
         {
             notificationText.text = "You have learned the power of the FIRE element :D";
             Instantiate(Resources.Load("FireArtifact"), hand);
@@ -316,10 +345,37 @@ public class PlayerController : MonoBehaviour {
             notificationText.text = "You have learned the power of the WIND element :D";
             Instantiate(Resources.Load("WindArtifact"), hand);
         }
+        //Play Sound
+        discoverySound.Play();
 
         arm.SetActive(true);
 
         yield return new WaitForSeconds(notificationLength);
         notificationText.text = "";
+    }
+
+    public void openInventory()
+    {
+        Time.timeScale = 0;
+        inventoryPanel.SetActive(true);
+        crosshair.enabled = false;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void closeInventory()
+    {
+        Time.timeScale = 1;
+        inventoryPanel.SetActive(false);
+        crosshair.enabled = true;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void openInstructionBook(int type)
+    {
+        currentBook = Instantiate(instructionBooks[type]).transform;
+        currentBook.transform.GetComponent<Animator>().SetBool("OpenBook", true);
+        bookMovingToPlayer = true;
     }
 }

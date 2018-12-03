@@ -1,9 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BookManager : MonoBehaviour {
 
+    //Instruction books (im grabbing form player controller then renaming canvas in this script)
+    public PlayerController playerController;
+    public GameObject inventoryPanel;
+    private int instructionCounter;
+    //Naming books
     private string[] bookNames;
     private string[] bookStory;
     private GameObject[] books;
@@ -61,10 +67,27 @@ public class BookManager : MonoBehaviour {
             //Only 1 line in the document for now, if anyone cares to add more, then this part gets rewritten to acocunt for more lines
             books[i].GetComponent<BookValues>().bookStory = bookStory[0];
         }
+
+        //Naming canvas
+        for(int i = 0; i < playerController.instructionBooks.Length; i++)
+        {
+            string temp = "Book " + (i + 1);
+            inventoryPanel.transform.Find(temp).GetComponent<Text>().text = playerController.instructionBooks[i].GetComponent<BookValues>().bookName;
+            inventoryPanel.transform.Find(temp).gameObject.SetActive(false);
+            //and buttons
+            temp = "Button " + (i + 1);
+            inventoryPanel.transform.Find(temp).gameObject.SetActive(false);
+
+        }
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    public void unlockInstruction()
+    {
+        instructionCounter++;
+        string temp = "Book " + (instructionCounter);
+        inventoryPanel.transform.Find(temp).gameObject.SetActive(true);
+        //and buttons
+        temp = "Button " + (instructionCounter);
+        inventoryPanel.transform.Find(temp).gameObject.SetActive(true);
+    }
 }

@@ -5,6 +5,26 @@ TagManager:
   serializedVersion: 2
   tags:
   - Shootable
+  - Lava
+  - Red
+  - Blue
+  - GameManager
+  - Book
+  - Staff-Fire
+  - JumpPad
+  - Book-Wind
+  - Book-Fire
+  - Artifact-Wind
+  - Artifact-Fire
+  - Artifact-Earth
+  - Book-Ice
+  - Artifact-Ice
+  - FuseBox
+  - Staff-Ice
+  - Book-Earth
+  - Fire
+  - Book-Instruction
+  - Book-Instruction-OG
   layers:
   - Default
   - TransparentFX
