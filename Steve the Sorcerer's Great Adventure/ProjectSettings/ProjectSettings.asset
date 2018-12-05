@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 15
-  productGUID: 00000000000000000000000000000000
+  productGUID: 434e56378ac8f4f4597146735cf27206
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -726,7 +726,7 @@ PlayerSettings:
   facebookSdkVersion: 7.9.1
   apiCompatibilityLevel: 2
   cloudProjectId: 1fd4b8c7-ec1d-4130-bc82-3d1ae75d632e
-  projectName: EffectsExamples
+  projectName: Steve the Sorcerer's Great Adventure
   organizationId: aet339-level-design
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0

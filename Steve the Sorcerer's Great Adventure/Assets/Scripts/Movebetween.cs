@@ -16,7 +16,7 @@ public class Movebetween : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position = Vector3.MoveTowards(transform.position, waypoints[counter].position, step);
+        transform.position = Vector3.MoveTowards(transform.position, waypoints[counter].position, step * Time.deltaTime);
         if(Vector3.Distance(transform.position, waypoints[counter].position) < .1)
         {
             counter++;
