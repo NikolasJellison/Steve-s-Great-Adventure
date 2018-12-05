@@ -5065,7 +5065,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 93538038}
-  speed: 12
+  speed: 0.25
 --- !u!65 &975432670
 BoxCollider:
   m_ObjectHideFlags: 0
