@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour {
     private bool bookMovingToPlayer;
     private bool bookMovingToHome;
     private bool holdingBook;
+    private bool bookClosing;
     public GameObject inventoryPanel;
     //Current layout is blue = false and red = true. If you want to change it, go to the mechanicFlip() function/method/whatever
     private bool mechanicToggle;
@@ -80,16 +81,14 @@ public class PlayerController : MonoBehaviour {
         }
         //Need to run it once so everything gets a material and whatnot
         mechanicFlip();
-        //For moving the book
-        step = bookSpeed * Time.deltaTime;
-
+        
         //Disable arm for start
         arm.SetActive(false);
         //Diable inventory Pannel
         inventoryPanel.SetActive(false);
     }
 
-    //Didn't allow fast pressing of key
+    //Didn't allow fast pressing of key 
     /*private void FixedUpdate()
     {
         if (Input.GetKeyDown(mechanicKey))
@@ -100,6 +99,9 @@ public class PlayerController : MonoBehaviour {
     */
     private void Update()
     {
+        //For moving the book
+        step = bookSpeed * Time.deltaTime;
+
         //Inventory Pause
         if (Input.GetKeyDown(openInventoryKey))
         {
@@ -120,14 +122,22 @@ public class PlayerController : MonoBehaviour {
 
         //better raycasting for book
         interactRay = cam.ScreenPointToRay(Input.mousePosition);
-
+        //Reseting it so it is more responsive because my code sucks
+        interactionText.text = "";
         //Raycasting for books (include the arm active thing so you don't pick up a book while holding the artifact
-        if (Physics.Raycast(interactRay, out hit, interactRange) && !arm.activeSelf)
+        if (Physics.Raycast(interactRay, out hit, interactRange) && !arm.activeSelf && !bookMovingToHome && !bookClosing)
         {
             if (hit.transform.tag.Contains("Book"))
             {
-                lookingAtBook = true; 
-                interactionText.text = "Press " + interactKey + " to read " + hit.transform.GetComponent<BookValues>().bookName;
+                lookingAtBook = true;
+                if (!holdingBook && !bookMovingToHome)
+                {
+                    interactionText.text = "Press " + interactKey + " to read " + hit.transform.GetComponent<BookValues>().bookName;
+                }
+                else if( hit.transform.name == currentBook.name)
+                {
+                    interactionText.text = "Press " + interactKey + " to close " + hit.transform.GetComponent<BookValues>().bookName;
+                } 
             }
             else
             {
@@ -141,9 +151,24 @@ public class PlayerController : MonoBehaviour {
             lookingAtBook = false;
         }
 
-        if (Input.GetKeyDown(interactKey) && lookingAtBook && !arm.activeSelf)
+        if (Input.GetKeyDown(interactKey) && lookingAtBook && !arm.activeSelf && !bookMovingToHome && !bookClosing)
         {
-            currentBook = hit.transform;
+            if (!holdingBook)
+            {
+                currentBook = hit.transform;
+                InspectBook();
+            }
+            else if (holdingBook)
+            {
+                //Update inventory with current hint 
+                if (currentBook.tag.Contains("Instruction-OG"))
+                {
+                    bookManager.unlockInstruction();
+                }
+                //Need to let player close the book before it gets sent back, so we go to coroutine
+                StartCoroutine(returnBook());
+            }
+            /*
             //Just making a method to organize (maybe complicate things)
             if (!hit.transform.GetComponent<Animator>().GetBool("OpenBook"))
             {
@@ -152,10 +177,19 @@ public class PlayerController : MonoBehaviour {
                 bookOrginalRotation = hit.transform.rotation;
                 //Debug.Log(bookOrginalLocation);
                 //bookOrginalRotation = hit.transform.q
-                //Below this is new code for attempting to move book to hand and whatnot
-                while (Vector3.Distance(transform.position, hit.transform.position) < .3)
+                //Better way to do this for sure(stopping floating book)
+                if (currentBook.tag.Contains("Instruction-OG"))
                 {
-                    hit.transform.position = Vector3.MoveTowards(hit.transform.position, transform.position, step);
+                    //Stop floating of the book if it is doing that
+                    
+                    currentBook.GetComponent<Animator>().SetBool("BookFloat", false);
+                }
+                //Below this is new code for attempting to move book to hand and whatnot
+                while (Vector3.Distance(transform.position, currentBook.position) > .03)
+                {
+                    currentBook.position = Vector3.MoveTowards(currentBook.position, transform.position, step);
+                    Debug.Log("IN the thing2 " + Vector3.Distance(transform.position, currentBook.position) + currentBook.name + currentBook.position + transform.position);
+
                 }
                 hit.transform.GetComponent<Animator>().SetBool("OpenBook", true);
                 bookMovingToPlayer = true;
@@ -170,6 +204,9 @@ public class PlayerController : MonoBehaviour {
                 //Need to let player close the book before it gets sent back, so we go to coroutine
                 StartCoroutine(returnBook());
             }
+            */
+            //Determine if player is now holding book or got rid of one
+            holdingBook = !holdingBook;
         }
 
         //Keep the book with the player
@@ -204,6 +241,29 @@ public class PlayerController : MonoBehaviour {
         {
             shootProjectile("Fire");
         }
+    }
+
+    private void InspectBook()
+    {
+        if (currentBook.tag == "Book-Instruction-OG")
+        {
+            //Stop floating of the book if it is doing that
+            currentBook.GetComponent<Animator>().SetTrigger("StopFloating");
+        }
+
+        //Store book inintial place
+        bookOrginalLocation = hit.transform.position;
+        bookOrginalRotation = hit.transform.rotation;
+
+        //Move book into player
+        while (Vector3.Distance(transform.position, currentBook.position) < .3)
+        {
+            currentBook.position = Vector3.MoveTowards(currentBook.position, transform.position, step);
+        }
+        //Open the book
+        currentBook.GetComponent<Animator>().SetBool("OpenBook", true);
+        //Used in update function to keep the book with the player
+        bookMovingToPlayer = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -293,9 +353,11 @@ public class PlayerController : MonoBehaviour {
         //Sending junk books back
         if(currentBook.tag == "Book")
         {
+            bookClosing = true;
             hit.transform.GetComponent<Animator>().SetBool("OpenBook", false);
             //We change this waitforseconds if we changethe animation length for closing the book
             yield return new WaitForSeconds(2);
+            bookClosing = false;
             bookMovingToPlayer = false;
             //Moving the book back to it's place hopefully
             bookMovingToHome = true;
@@ -310,15 +372,18 @@ public class PlayerController : MonoBehaviour {
     private IEnumerator obtainElement(string bookTag)
     {
         //time to close the book and maybe particle effects here at some point?
+        bookClosing = true;
         hit.transform.GetComponent<Animator>().SetBool("OpenBook", false);
         //We change this waitforseconds if we changethe animation length for closing the book
         yield return new WaitForSeconds(2);
+        bookClosing = false;
         bookMovingToPlayer = false;
         //Destroy book
         Destroy(currentBook.gameObject);
         //Figure out which book it is to give the player some info
         if (currentBook.tag.Contains("Instruction"))
         {
+            currentBook.GetComponent<Animator>().SetBool("BookFloat", false);
             yield break;
         }
         else if (bookTag.Contains("Fire"))
@@ -374,6 +439,17 @@ public class PlayerController : MonoBehaviour {
 
     public void openInstructionBook(int type)
     {
+        if (holdingBook)
+        {
+            //So as it  stands, if you try to open an instruction book while reading a book, nothing happens. Which is good, but i don't know why
+            //But it stays cause it does the job
+            returnBook();
+            while (Vector3.Distance(currentBook.position, bookOrginalLocation) > .1)
+            {
+                return;
+            }
+        }
+        holdingBook = true;
         currentBook = Instantiate(instructionBooks[type]).transform;
         currentBook.transform.GetComponent<Animator>().SetBool("OpenBook", true);
         bookMovingToPlayer = true;
