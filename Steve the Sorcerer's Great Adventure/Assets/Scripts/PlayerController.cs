@@ -262,7 +262,8 @@ public class PlayerController : MonoBehaviour {
         if (currentBook.tag == "Book-Instruction-OG")
         {
             //Stop floating of the book if it is doing that
-            currentBook.GetComponent<Animator>().SetTrigger("StopFloating");
+            //Stop it from jumping around
+            currentBook.GetComponent<BookFloat>().enabled = false;
         }
 
         //Store book inintial place
@@ -482,7 +483,7 @@ public class PlayerController : MonoBehaviour {
             }
         }
         holdingBook = true;
-        currentBook = Instantiate(instructionBooks[type]).transform;
+        currentBook = Instantiate(instructionBooks[type],hand.position, transform.rotation).transform;
         currentBook.transform.GetComponent<Animator>().SetBool("OpenBook", true);
         bookMovingToPlayer = true;
     }

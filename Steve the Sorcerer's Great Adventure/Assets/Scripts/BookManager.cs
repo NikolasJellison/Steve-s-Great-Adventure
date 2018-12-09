@@ -28,6 +28,7 @@ public class BookManager : MonoBehaviour {
         */
         books = GameObject.FindGameObjectsWithTag("Book");
         Debug.Log("Number of unique book titles found: " + bookNames.Length + "\n");
+        Debug.Log("Number of unique (junk) books found: " + books.Length);
         for(int i = 0; i < books.Length; i++)
         {
             if(i >= bookNames.Length)
