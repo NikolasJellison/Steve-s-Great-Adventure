@@ -53,6 +53,8 @@ public class PlayerController : MonoBehaviour {
     private bool mechanicToggle;
     private GameObject[] blueObjects;
     private GameObject[] redObjects;
+    private GameObject[] blueTexts;
+    private GameObject[] redTexts;
     //for books
     private RaycastHit hit;
     private bool lookingAtBook;
@@ -81,6 +83,16 @@ public class PlayerController : MonoBehaviour {
         {
             redObjects = GameObject.FindGameObjectsWithTag("Red");
         }
+        //For library text
+        if (blueTexts == null)
+        {
+            blueTexts = GameObject.FindGameObjectsWithTag("Blue-Text");
+        }
+        if(redTexts == null)
+        {
+            redTexts = GameObject.FindGameObjectsWithTag("Red-Text");
+        }
+
         //Need to run it once so everything gets a material and whatnot
         mechanicFlip();
         
@@ -331,6 +343,15 @@ public class PlayerController : MonoBehaviour {
                 red.gameObject.GetComponent<MeshCollider>().enabled = true;
                 red.gameObject.GetComponent<MeshRenderer>().material = redOn;
             }
+            //Library
+            foreach(GameObject blueTxt in blueTexts)
+            {
+                blueTxt.SetActive(false);
+            }
+            foreach(GameObject redTxt in redTexts)
+            {
+                redTxt.SetActive(true);
+            }
         }
         else if (mechanicToggle)
         {
@@ -345,6 +366,15 @@ public class PlayerController : MonoBehaviour {
             {
                 red.gameObject.GetComponent<MeshCollider>().enabled = false;
                 red.gameObject.GetComponent<MeshRenderer>().material = redOff;
+            }
+            //Library
+            foreach (GameObject blueTxt in blueTexts)
+            {
+                blueTxt.SetActive(true);
+            }
+            foreach (GameObject redTxt in redTexts)
+            {
+                redTxt.SetActive(false);
             }
         }
         mechanicToggle = !mechanicToggle;

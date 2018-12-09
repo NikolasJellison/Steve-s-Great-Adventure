@@ -25,6 +25,8 @@ TagManager:
   - Fire
   - Book-Instruction
   - Book-Instruction-OG
+  - Blue-Text
+  - Red-Text
   layers:
   - Default
   - TransparentFX
