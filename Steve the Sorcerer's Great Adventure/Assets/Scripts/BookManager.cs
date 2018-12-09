@@ -8,6 +8,7 @@ public class BookManager : MonoBehaviour {
     //Instruction books (im grabbing form player controller then renaming canvas in this script)
     public PlayerController playerController;
     public GameObject inventoryPanel;
+    private Text notificationText;
     private int instructionCounter;
     //Naming books
     private string[] bookNames;
@@ -56,6 +57,9 @@ public class BookManager : MonoBehaviour {
                 books[i].GetComponent<BookValues>().bookName = bookNames[i];
                 //Debug.Log("Book Name: " + bookNames[i]);
             }
+
+            //For intructions
+            notificationText = playerController.notificationText;
             
         }
 
@@ -89,5 +93,17 @@ public class BookManager : MonoBehaviour {
         //and buttons
         temp = "Button " + (instructionCounter);
         inventoryPanel.transform.Find(temp).gameObject.SetActive(true);
+        StartCoroutine(displayNotifcationText());
+    }
+
+    private IEnumerator displayNotifcationText()
+    {
+        playerController.discoverySound.Play();
+        notificationText.text = "Note Added to Inventory. To access Inventory, press '" + playerController.openInventoryKey + "'";
+        yield return new WaitForSeconds(8);
+        if(notificationText.text != "")
+        {
+            notificationText.text = "";
+        }
     }
 }

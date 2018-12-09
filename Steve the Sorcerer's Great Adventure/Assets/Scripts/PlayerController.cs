@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
 
     //We use tags to distinguish which objects can get toggled in this game
 
+    #region Variables
     //Key for the mechanic
     [Header("Reference game manager")]
     public GameManager gameManager;
@@ -67,6 +68,7 @@ public class PlayerController : MonoBehaviour {
     [Header("Sounds")]
     public AudioSource discoverySound;
     public AudioSource fireballSound;
+    #endregion  
 
     private void Start()
     {
@@ -390,7 +392,7 @@ public class PlayerController : MonoBehaviour {
         {
             notificationText.text = "You have learned the power of the FIRE element :D";
             Instantiate(Resources.Load("FireArtifact"), hand);
-            Debug.Log("Did the instantiaion");
+            //Debug.Log("Did the instantiaion");
         }
         else if (bookTag.Contains("Ice"))
         {

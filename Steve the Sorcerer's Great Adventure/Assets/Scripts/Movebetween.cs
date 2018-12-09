@@ -11,11 +11,12 @@ public class Movebetween : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        step = speed * Time.deltaTime;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        step = speed * Time.deltaTime;
+
         transform.position = Vector3.MoveTowards(transform.position, waypoints[counter].position, step);
         if(Vector3.Distance(transform.position, waypoints[counter].position) < .1)
         {
