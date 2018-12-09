@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(mechanicKey))
+        if (Input.GetKeyDown(mechanicKey) && Time.timeScale !=0)
         {
             mechanicFlip();
         }
