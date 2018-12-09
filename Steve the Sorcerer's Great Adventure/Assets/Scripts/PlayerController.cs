@@ -390,7 +390,7 @@ public class PlayerController : MonoBehaviour {
         {
             notificationText.text = "You have learned the power of the FIRE element :D";
             Instantiate(Resources.Load("FireArtifact"), hand);
-            //Debug.Log("Did the instantiaion");
+            Debug.Log("Did the instantiaion");
         }
         else if (bookTag.Contains("Ice"))
         {
