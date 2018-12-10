@@ -9,7 +9,7 @@ public class BookManager : MonoBehaviour {
     public PlayerController playerController;
     public GameObject inventoryPanel;
     private Text notificationText;
-    private int instructionCounter;
+    [HideInInspector]public int instructionCounter;
     //Naming books
     private string[] bookNames;
     private string[] bookStory;
@@ -73,11 +73,14 @@ public class BookManager : MonoBehaviour {
             books[i].GetComponent<BookValues>().bookStory = bookStory[0];
         }
 
+        
+        
         //Naming canvas
         for(int i = 0; i < playerController.instructionBooks.Length; i++)
         {
             string temp = "Book " + (i + 1);
-            inventoryPanel.transform.Find(temp).GetComponent<Text>().text = playerController.instructionBooks[i].GetComponent<BookValues>().bookName;
+            //Old because now we want to be able to pick up the inventory books in an order (we still disable the text here though
+            //inventoryPanel.transform.Find(temp).GetComponent<Text>().text = playerController.instructionBooks[i].GetComponent<BookValues>().bookName;
             inventoryPanel.transform.Find(temp).gameObject.SetActive(false);
             //and buttons
             temp = "Button " + (i + 1);
@@ -88,8 +91,10 @@ public class BookManager : MonoBehaviour {
 
     public void unlockInstruction()
     {
+        //Need to assign the book to the next inventory space
         instructionCounter++;
         string temp = "Book " + (instructionCounter);
+        inventoryPanel.transform.Find(temp).GetComponent<Text>().text = playerController.instructionBooks[instructionCounter - 1].GetComponent<BookValues>().bookName;
         inventoryPanel.transform.Find(temp).gameObject.SetActive(true);
         //and buttons
         temp = "Button " + (instructionCounter);
@@ -100,7 +105,7 @@ public class BookManager : MonoBehaviour {
     private IEnumerator displayNotifcationText()
     {
         playerController.discoverySound.Play();
-        notificationText.text = "Note Added to Inventory. To access Inventory, press '" + playerController.openInventoryKey + "'";
+        notificationText.text = playerController.currentBook.name + " Added to Inventory. To access Inventory, press '" + playerController.openInventoryKey + "'";
         yield return new WaitForSeconds(8);
         if(notificationText.text != "")
         {

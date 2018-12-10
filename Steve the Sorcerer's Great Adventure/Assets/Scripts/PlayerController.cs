@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour {
     //Library
     public GameObject[] instructionBooks;
     public Transform bookHold;
-    private Transform currentBook; //So i can keep the book with the player and raycasting wont bug out because of bad code
+    [HideInInspector]public Transform currentBook; //So i can keep the book with the player and raycasting wont bug out because of bad code (public beacuse i want to add book title to notication text and that is done in the book manager script
     public float bookSpeed = 3;
     private float step;
     private Vector3 bookOrginalLocation;
@@ -177,6 +177,8 @@ public class PlayerController : MonoBehaviour {
                 //Update inventory with current hint 
                 if (currentBook.tag.Contains("Instruction-OG"))
                 {
+                    currentBook.gameObject.tag = "Book-Instruction";
+                    instructionBooks[bookManager.instructionCounter] = currentBook.gameObject;
                     bookManager.unlockInstruction();
                 }
                 //Need to let player close the book before it gets sent back, so we go to coroutine
@@ -263,6 +265,7 @@ public class PlayerController : MonoBehaviour {
         {
             //Stop floating of the book if it is doing that
             //Stop it from jumping around
+            if(currentBook.GetComponent<BookFloat>() != null)
             currentBook.GetComponent<BookFloat>().enabled = false;
         }
 
@@ -411,12 +414,12 @@ public class PlayerController : MonoBehaviour {
         yield return new WaitForSeconds(2);
         bookClosing = false;
         bookMovingToPlayer = false;
-        //Destroy book
-        Destroy(currentBook.gameObject);
+
         //Figure out which book it is to give the player some info
         if (currentBook.tag.Contains("Instruction"))
         {
             currentBook.GetComponent<Animator>().SetBool("BookFloat", false);
+            currentBook.gameObject.SetActive(false);
             yield break;
         }
         else if (bookTag.Contains("Fire"))
@@ -442,6 +445,11 @@ public class PlayerController : MonoBehaviour {
             //Wind element stuff
             notificationText.text = "You have learned the power of the WIND element :D";
             Instantiate(Resources.Load("WindArtifact"), hand);
+        }
+        //Destroy book
+        if (currentBook.gameObject.activeSelf)
+        {
+            Destroy(currentBook.gameObject);
         }
         //Play Sound
         discoverySound.Play();
@@ -483,7 +491,10 @@ public class PlayerController : MonoBehaviour {
             }
         }
         holdingBook = true;
-        currentBook = Instantiate(instructionBooks[type],hand.position, transform.rotation).transform;
+        //currentBook = Instantiate(instructionBooks[type],hand.position, transform.rotation).transform;
+        currentBook = instructionBooks[type].transform;
+        currentBook.position = hand.position;
+        currentBook.gameObject.SetActive(true);
         currentBook.transform.GetComponent<Animator>().SetBool("OpenBook", true);
         bookMovingToPlayer = true;
     }
