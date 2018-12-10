@@ -150,3 +150,17 @@ MonoBehaviour:
   playerController: {fileID: 0}
   inventoryPanel: {fileID: 0}
   instructionCounter: 0
+  bookStory:
+  - The Great Adventures of Sam
+  - The King of the North
+  - The White Walker Encounter
+  - Sam's Journey to the Citadel
+  - Tales of the Undertaker
+  - Staff Maintenance 101
+  - The Dark Lord
+  - A Collection of Grandmaster
+  - The Fiery Massacre
+  - Grant the Knight
+  - The Myysterious Dissapearance of Queen Emily
+  - The War Yormir
+  - Trash'bin'dor the great
