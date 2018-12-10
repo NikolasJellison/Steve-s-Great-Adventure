@@ -556,6 +556,14 @@ public class PlayerController : MonoBehaviour {
         if(lifeCount <= 0)
         {
             gameManager.respawn();
+            foreach (GameObject blueE in blueEnemyProjectile)
+            {
+                Destroy(blueE);
+            }
+            foreach (GameObject redE in redEnemyProjectile)
+            {
+                Destroy(redE);
+            }
         }
     }
 }

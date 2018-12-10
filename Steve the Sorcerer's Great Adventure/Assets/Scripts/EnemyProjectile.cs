@@ -18,7 +18,7 @@ public class EnemyProjectile : MonoBehaviour {
     void Update () {
         transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
         transform.LookAt(player.transform);
-        if(Vector3.Distance(transform.position, player.transform.position) < .1)
+        if(Vector3.Distance(transform.position, player.transform.position) < 1)
         {
             player.GetComponent<PlayerController>().playerHit(projectileType);
             Destroy(gameObject);

@@ -1221,6 +1221,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100006, guid: c6453f8e1f814744d8b94e5a6d1f9942,
     type: 2}
   m_PrefabInternal: {fileID: 1163133232}
+--- !u!114 &41158963 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114552624798693808, guid: c6453f8e1f814744d8b94e5a6d1f9942,
+    type: 2}
+  m_PrefabInternal: {fileID: 1163133232}
+  m_Script: {fileID: 11500000, guid: e891b229d538c90489f59b69641cac77, type: 3}
 --- !u!1001 &42430252
 Prefab:
   m_ObjectHideFlags: 0
@@ -2513,6 +2519,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 88662373}
   m_Mesh: {fileID: 4300000, guid: 9aabdb89511546649992db464a1ed8fe, type: 3}
+--- !u!1 &92270689 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1638020213298652, guid: f57b651b8441ca140b849d5399f526db,
+    type: 2}
+  m_PrefabInternal: {fileID: 23098654}
 --- !u!4 &92566995 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4363270632017482, guid: 184d72fc511284059915315a33028727,
@@ -4250,6 +4261,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114428056831353542, guid: a5072a1f04d4a0a4ba21b596a5383a05,
+        type: 2}
+      propertyPath: inventoryPanel
+      value: 
+      objectReference: {fileID: 92270689}
+    - target: {fileID: 114428056831353542, guid: a5072a1f04d4a0a4ba21b596a5383a05,
+        type: 2}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 41158963}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5072a1f04d4a0a4ba21b596a5383a05, type: 2}
   m_IsPrefabAsset: 0
@@ -11562,6 +11583,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4559197499346322, guid: 475b905fe3b32864fb3448b79d6bc815,
     type: 2}
   m_PrefabInternal: {fileID: 482986675}
+--- !u!114 &486266719 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114428056831353542, guid: a5072a1f04d4a0a4ba21b596a5383a05,
+    type: 2}
+  m_PrefabInternal: {fileID: 182207793}
+  m_Script: {fileID: 11500000, guid: 664bbbba4b5d6354d90b7dd17020d20b, type: 3}
 --- !u!1001 &486276207
 Prefab:
   m_ObjectHideFlags: 0
@@ -27189,6 +27216,21 @@ Prefab:
       propertyPath: notificationText
       value: 
       objectReference: {fileID: 362374761}
+    - target: {fileID: 114552624798693808, guid: c6453f8e1f814744d8b94e5a6d1f9942,
+        type: 2}
+      propertyPath: bookManager
+      value: 
+      objectReference: {fileID: 486266719}
+    - target: {fileID: 114552624798693808, guid: c6453f8e1f814744d8b94e5a6d1f9942,
+        type: 2}
+      propertyPath: inventoryPanel
+      value: 
+      objectReference: {fileID: 92270689}
+    - target: {fileID: 114552624798693808, guid: c6453f8e1f814744d8b94e5a6d1f9942,
+        type: 2}
+      propertyPath: crosshair
+      value: 
+      objectReference: {fileID: 1686636330}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 2}
   m_IsPrefabAsset: 0
@@ -38022,6 +38064,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4559197499346322, guid: 475b905fe3b32864fb3448b79d6bc815,
     type: 2}
   m_PrefabInternal: {fileID: 1685230797}
+--- !u!114 &1686636330 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114655396364045416, guid: f57b651b8441ca140b849d5399f526db,
+    type: 2}
+  m_PrefabInternal: {fileID: 23098654}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1693786933
 Prefab:
   m_ObjectHideFlags: 0
