@@ -18,7 +18,7 @@ public class BookManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        bookStory = System.IO.File.ReadAllLines("Assets/Resources/BookStories.txt");
+        //bookStory = System.IO.File.ReadAllLines("Assets/Resources/BookStories.txt");
         /* This was for debug
         for(int i =0; i < bookNames.Length; i++)
         {
@@ -69,7 +69,7 @@ public class BookManager : MonoBehaviour {
             //Even though the stories aren't readable, i still want them to be unique for some reason
 
             //Only 1 line in the document for now, if anyone cares to add more, then this part gets rewritten to acocunt for more lines
-            books[i].GetComponent<BookValues>().bookStory = bookStory[0];
+            //books[i].GetComponent<BookValues>().bookStory = bookStory[0];
         }
 
         
