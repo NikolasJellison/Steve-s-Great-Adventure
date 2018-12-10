@@ -72,6 +72,8 @@ public class PlayerController : MonoBehaviour {
     [Header("Sounds")]
     public AudioSource discoverySound;
     public AudioSource fireballSound;
+    public AudioSource bookClose;
+    [Header("Lives and stuff")]
     //for damage
     public Image[] lifes;
     private int lifeCount;
@@ -304,6 +306,7 @@ public class PlayerController : MonoBehaviour {
             Destroy(other.gameObject);
             hasIceStaff = true;
             //Player Discovery sound
+            Instantiate(Resources.Load("VfxStarWide"), hand);
             discoverySound.Play();
         }
         else if (other.tag == "Staff-Fire")
@@ -313,6 +316,7 @@ public class PlayerController : MonoBehaviour {
             Destroy(other.gameObject);
             hasFireStaff = true;
             //Player Discovery sound
+            Instantiate(Resources.Load("VfxStarWide"), hand);
             discoverySound.Play();
         }
     }
@@ -418,6 +422,8 @@ public class PlayerController : MonoBehaviour {
 
     private IEnumerator returnBook()
     {
+        //Sound plays
+        bookClose.Play();
         //Sending junk books back
         if(currentBook.tag == "Book")
         {
@@ -485,6 +491,7 @@ public class PlayerController : MonoBehaviour {
         }
         //Play Sound
         discoverySound.Play();
+        Instantiate(Resources.Load("VfxStarsFourPointsColor"), hand);
 
         arm.SetActive(true);
 
