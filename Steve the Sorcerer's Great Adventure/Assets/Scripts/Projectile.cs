@@ -13,6 +13,23 @@ public class Projectile : MonoBehaviour {
         {
             other.GetComponent<FuseBox>().fuseBoxHit();
         }
+        else if(other.tag == "Enemy")
+        {
+            if(projectileType == 1)
+            {
+                //ice
+                if (!other.GetComponent<EnemyAI>().frozen)
+                {
+                    other.GetComponent<EnemyAI>().freezeEnemy();
+                    Debug.Log("Freezes enemy");
+                }
+            }
+            else
+            {
+                other.GetComponent<EnemyAI>().defeatEnemy();
+                Debug.Log("Defeats enemy");
+            }
+        }
         else if(other.tag != "Player")
         {
             Destroy(gameObject);

@@ -27,6 +27,9 @@ TagManager:
   - Book-Instruction-OG
   - Blue-Text
   - Red-Text
+  - Enemy
+  - Enemy-Projectile-Blue
+  - Enemy-Projectile-Red
   layers:
   - Default
   - TransparentFX
