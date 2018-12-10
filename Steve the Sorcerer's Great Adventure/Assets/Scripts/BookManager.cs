@@ -11,8 +11,8 @@ public class BookManager : MonoBehaviour {
     private Text notificationText;
     [HideInInspector]public int instructionCounter;
     //Naming books
-    private string[] bookNames;
-    public string[] bookStory;
+    private string[] bookStory;
+    public string[] bookNames;
     private GameObject[] books;
     private int vol = 2;
 
