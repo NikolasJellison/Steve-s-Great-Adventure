@@ -6,8 +6,15 @@ public class JumpPad : MonoBehaviour {
 
     public float jumpPadStrength = 1000;
     public bool jumpPadOn;
+    public GameObject particles;
 
-
+    private void Update()
+    {
+        if (jumpPadOn)
+        {
+            particles.SetActive(true);
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player" && jumpPadOn)

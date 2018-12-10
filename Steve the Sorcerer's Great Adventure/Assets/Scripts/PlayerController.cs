@@ -69,6 +69,8 @@ public class PlayerController : MonoBehaviour {
     public float projectileSpeed = 300;
     private bool hasIceStaff;
     private bool hasFireStaff;
+    private GameObject iceStaff;
+    private GameObject fireStaff;
     [Header("Sounds")]
     public AudioSource discoverySound;
     public AudioSource fireballSound;
@@ -302,7 +304,7 @@ public class PlayerController : MonoBehaviour {
         else if (other.tag == "Staff-Ice")
         {
             arm.SetActive(true);
-            Instantiate(Resources.Load("Staff-Ice-Hold"), staffHold);
+            iceStaff = Instantiate(Resources.Load("Staff-Ice-Hold"), staffHold) as GameObject;
             Destroy(other.gameObject);
             hasIceStaff = true;
             //Player Discovery sound
@@ -312,7 +314,7 @@ public class PlayerController : MonoBehaviour {
         else if (other.tag == "Staff-Fire")
         {
             arm.SetActive(true);
-            Instantiate(Resources.Load("Staff-Fire-Hold"), staffHold);
+            fireStaff = Instantiate(Resources.Load("Staff-Fire-Hold"), staffHold) as GameObject;
             Destroy(other.gameObject);
             hasFireStaff = true;
             //Player Discovery sound
@@ -331,6 +333,10 @@ public class PlayerController : MonoBehaviour {
             case "Ice":
                 tempObject = Instantiate(iceProjectile, staffHold.transform.position - staffHold.transform.forward + Vector3.up * .9f, staffHold.transform.rotation);
                 tempObject.GetComponent<Rigidbody>().AddForce(-staffHold.transform.forward * projectileSpeed);
+                //Making the correct staff appear
+                if(fireStaff != null)
+                    fireStaff.SetActive(false);
+                iceStaff.SetActive(true);
                 break;
 
             case "Fire":
@@ -338,6 +344,9 @@ public class PlayerController : MonoBehaviour {
                 tempObject.GetComponent<Rigidbody>().AddForce(-staffHold.transform.forward * projectileSpeed);
                 //fireball sound
                 fireballSound.Play();
+                if(iceStaff !=null)
+                    iceStaff.SetActive(false);
+                fireStaff.SetActive(true);
                 break;
         }
     }
@@ -560,7 +569,7 @@ public class PlayerController : MonoBehaviour {
     {
         lifes[lifeCount].enabled = false;
         lifeCount--;
-        if(lifeCount <= 0)
+        if(lifeCount < 0)
         {
             gameManager.respawn();
             foreach (GameObject blueE in blueEnemyProjectile)
@@ -570,6 +579,10 @@ public class PlayerController : MonoBehaviour {
             foreach (GameObject redE in redEnemyProjectile)
             {
                 Destroy(redE);
+            }
+            for(int i = 0; i < lifes.Length; i++)
+            {
+                lifes[i].enabled = true;
             }
         }
     }

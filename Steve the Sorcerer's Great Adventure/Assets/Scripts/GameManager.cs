@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour {
     [Tooltip("Put the 3 room checkpoints here")]
     public Transform[] respawnPoints;
     public GameObject player;
-    private int checkpointCounter;
+    [HideInInspector] public int checkpointCounter;
     [Header("Room one Reset info")]
     public GameObject lava;
     private Vector3 lavaOriginal;
