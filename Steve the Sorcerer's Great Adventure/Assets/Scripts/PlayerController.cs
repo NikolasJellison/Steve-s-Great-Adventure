@@ -55,6 +55,8 @@ public class PlayerController : MonoBehaviour {
     private GameObject[] redObjects;
     private GameObject[] blueTexts;
     private GameObject[] redTexts;
+    private GameObject[] blueEnemyProjectile;
+    private GameObject[] redEnemyProjectile;
     //for books
     private RaycastHit hit;
     private bool lookingAtBook;
@@ -70,6 +72,9 @@ public class PlayerController : MonoBehaviour {
     [Header("Sounds")]
     public AudioSource discoverySound;
     public AudioSource fireballSound;
+    //for damage
+    public Image[] lifes;
+    private int lifeCount;
     #endregion  
 
     private void Start()
@@ -100,6 +105,8 @@ public class PlayerController : MonoBehaviour {
         arm.SetActive(false);
         //Diable inventory Pannel
         inventoryPanel.SetActive(false);
+        //lives (array)
+        lifeCount = lifes.Length - 1;
     }
 
     //Didn't allow fast pressing of key 
@@ -333,6 +340,13 @@ public class PlayerController : MonoBehaviour {
 
     private void mechanicFlip()
     {
+
+        //Scan for enemy projectiles
+        blueEnemyProjectile = null;
+        blueEnemyProjectile = GameObject.FindGameObjectsWithTag("Enemy-Projectile-Blue");
+        redEnemyProjectile = null;
+        redEnemyProjectile = GameObject.FindGameObjectsWithTag("Enemy-Projectile-Red");
+
         if (!mechanicToggle)
         {
             //Swap blue with red
@@ -355,6 +369,15 @@ public class PlayerController : MonoBehaviour {
             foreach(GameObject redTxt in redTexts)
             {
                 redTxt.SetActive(true);
+            }
+            //Projectiles
+            foreach(GameObject blueE in blueEnemyProjectile)
+            {
+                blueE.transform.Find("pSphere6").GetComponent<MeshRenderer>().material = blueOff;
+            }
+            foreach(GameObject redE in redEnemyProjectile)
+            {
+                redE.transform.Find("pSphere6").GetComponent<MeshRenderer>().material = redOn;
             }
         }
         else if (mechanicToggle)
@@ -379,6 +402,15 @@ public class PlayerController : MonoBehaviour {
             foreach (GameObject redTxt in redTexts)
             {
                 redTxt.SetActive(false);
+            }
+            //Projectiles
+            foreach (GameObject blueE in blueEnemyProjectile)
+            {
+                blueE.transform.Find("pSphere6").GetComponent<MeshRenderer>().material = blueOn;
+            }
+            foreach (GameObject redE in redEnemyProjectile)
+            {
+                redE.transform.Find("pSphere6").GetComponent<MeshRenderer>().material = redOff;
             }
         }
         mechanicToggle = !mechanicToggle;
@@ -497,5 +529,33 @@ public class PlayerController : MonoBehaviour {
         currentBook.gameObject.SetActive(true);
         currentBook.transform.GetComponent<Animator>().SetBool("OpenBook", true);
         bookMovingToPlayer = true;
+    }
+
+    public void playerHit(int type)
+    {
+        //1 = Ice, 2 = Fire
+        //Mechanic toggle: true = blue, false = red
+
+        if (mechanicToggle && type == 2)
+        {
+            takeDamage();
+            Debug.Log("Took damage");
+        }
+        else if(!mechanicToggle && type == 1)
+        {
+            takeDamage();
+            Debug.Log("Took damage");
+        }
+
+    }
+
+    private void takeDamage()
+    {
+        lifes[lifeCount].enabled = false;
+        lifeCount--;
+        if(lifeCount <= 0)
+        {
+            gameManager.respawn();
+        }
     }
 }
