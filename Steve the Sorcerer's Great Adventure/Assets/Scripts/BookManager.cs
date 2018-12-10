@@ -12,13 +12,12 @@ public class BookManager : MonoBehaviour {
     [HideInInspector]public int instructionCounter;
     //Naming books
     private string[] bookNames;
-    private string[] bookStory;
+    public string[] bookStory;
     private GameObject[] books;
     private int vol = 2;
 
 	// Use this for initialization
 	void Start () {
-        bookNames = System.IO.File.ReadAllLines("Assets/Resources/BookNames.txt");
         bookStory = System.IO.File.ReadAllLines("Assets/Resources/BookStories.txt");
         /* This was for debug
         for(int i =0; i < bookNames.Length; i++)
